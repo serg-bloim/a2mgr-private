@@ -226,4 +226,16 @@ private
 shout
 Screenshot saved into "%s"
 Downloading version information...
+
+
+%d%% (%s)
+%.2f B/s
+%.2f KB/s
+%.2f MB/s
+Receiving resource updates...
+file
+%d/%d files done
 Sandbox
+Play
+Authors
+Quit

@@ -468,16 +468,26 @@ Very Rare Dragon Leather Gauntlets
 Elven Dragon Leather Gloves
 Very Rare Dragon Leather Boots
 Elven Dragon Leather Shoes
+Common Bone Staff
 Common Bone Pike
+Uncommon Bone Staff
 Uncommon Bone Pike
+Rare Bone Staff
 Rare Bone Pike
+Very Rare Bone Staff
+Elven Bone Staff
 Elven Bone Halberd
+Bad Bone Staff
 Bad Bone Pike
+Good Bone Staff
 Good Bone Pike
 Common Bone Small Shield
+Common Bone Large Shield
 Uncommon Bone Small Shield
+Rare Bone Small Shield
 Rare Bone Large Shield
 Bad Bone Small Shield
+Good Bone Small Shield
 Good Bone Large Shield
 Common Bone Ring
 Uncommon Bone Ring
@@ -494,11 +504,14 @@ Elven Bone Amulet
 Bad Bone Amulet
 Good Bone Amulet
 Common Bone Helm
+Common Bone Chain Helm
 Uncommon Bone Helm
+Rare Bone Helm
 Rare Bone Chain Helm
 Very Rare Bone Low Hat
 Elven Bone Low Hat
 Bad Bone Helm
+Good Bone Helm
 Good Bone Chain Helm
 Common Bone Chain Mail
 Uncommon Bone Chain Mail
@@ -508,11 +521,14 @@ Elven Bone Dress
 Bad Bone Chain Mail
 Good Bone Scale Mail
 Common Bone Cuirass
+Common Bone Plate Cuirass
 Uncommon Bone Cuirass
+Rare Bone Cuirass
 Rare Bone Plate Cuirass
 Very Rare Bone Cloak
 Elven Bone Cloak
 Bad Bone Cuirass
+Good Bone Cuirass
 Good Bone Plate Cuirass
 Common Bone Plate Bracers
 Uncommon Bone Plate Bracers
@@ -546,12 +562,15 @@ Elven Crystal Staff
 Very Rare Crystal Large Shield
 Very Rare Crystal Ring
 Elven Crystal Ring
+Good Crystal Ring
 Very Rare Crystal Amulet
 Elven Crystal Amulet
+Good Crystal Amulet
 Very Rare Crystal Chain Helm
 Very Rare Crystal Full Helm
 Very Rare Crystal Plate Helm
 Elven Crystal Hat
+Good Crystal Helm
 Very Rare Crystal Scale Mail
 Elven Crystal Dress
 Rare Crystal Cuirass

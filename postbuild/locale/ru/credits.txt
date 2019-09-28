@@ -1,79 +1,24 @@
-АЛЛОДЫ 2: СЛУГА ТЬМЫ
-(дополнение к игре Аллоды 2 от команды -Vampire-)
+= Хэт Тангара =
 
+Работает на базе
+исходников allods2.eu:
+https://github.com/jewalky/a2mgr
+https://github.com/jewalky/srvmgr
+https://github.com/jewalky/redhat
 
+ПРОГРАММИРОВАНИЕ:
+exc!ton
+ZZYZX
 
+Отдельная благодарность 
+Anotomix
 
-"a25.bmp"
+Спасибо 
+Nikolay, WarBeginner,
+ILIUS, Zhuxus,
+Chariot и всем
+аллодерам!
 
-
-
-
-
-
-
-vamp.allods.net
-vamp.restoration.ru
-
-
-
-
-РУКОВОДИТЕЛЬ ПРОЕКТА
-Андрей Маховиков AKA -Vampire-
-
-
-ИДЕОЛОГИЯ
-Андрей Маховиков AKA -Vampire-
-Дмитрий Смирнов AKA Dim
-Борис Земсков AKA Scrackan
-
-
-ПРОГРАММИРОВАНИЕ
-Александр Мушников AKA Kobik
-Дмитрий Смирнов AKA Dim
-Владимир Чеботарев AKA Xlend
-Андрей Маховиков AKA -Vampire-
-
-
-ГРАФИЧЕСКОЕ ОФОРМЛЕНИЕ
-Ольга Демидова AKA Kira
-Илья Венцлавович AKA CMEPTb
-Андрей Маховиков AKA -Vampire-
-Дмитрий Смирнов AKA Dim
-Владимир Тырин AKA ТОМАТ
-Ярослав Еременко АКА ГОРЫНЫЧ
-Владимир Старченко AKA S.V.Roll
-
-
-СЦЕHАРИЙ
-Андрей Маховиков AKA -Vampire-
-Борис Земсков AKA Scrackan
-
-
-ДИЗАЙН КАРТ
-Борис Земсков AKA Scrackan
-Роман Большев AKA Casperoff
-Дмитрий Ножнин AKA WildMaN
-Виктор Одинцов AKA Odin
-Александр Тарасенко AKA Archangel
-Валерий Баснин AKA Tufs
-Владимир Тырин AKA ТОМАТ
-Владимир Ревзин AKA Tigr@
-
-
-ДОКУМЕНТАЦИЯ
-Борис Земсков AKA Scrackan
-Роман Большев AKA Casperoff
-
-
-ТЕСТИРОВАHИЕ
-Игроки хэта Allods.Net
-
-
-ОТДЕЛЬHОЕ СПАСИБО
-Администрации Allods.Net за поддержку
-Администрации Restoration.Ru за хостинг
-Компании Nival за отличную серию игр про "Аллоды"
 
 
 

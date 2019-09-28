@@ -1,10 +1,23 @@
-COMMUNITY UPDATE VERSION 2.x
-for playing at Allods2.eu
+= Tangar's Hat =
 
+Powered by
+allods2.eu sources:
+https://github.com/jewalky/a2mgr
+https://github.com/jewalky/srvmgr
+https://github.com/jewalky/redhat
 
-PROGRAMMING
+PROGRAMMING:
 exc!ton
 ZZYZX
+
+Special thanks to 
+Anotomix
+
+Thanks
+Nikolay, WarBeginner,
+ILIUS, Zhuxus,
+Chariot & 
+all alloders!
 
 
 

@@ -1,3 +1,29 @@
+= Tangar's Hat =
+
+Powered by
+allods2.eu sources:
+https://github.com/jewalky/a2mgr
+https://github.com/jewalky/srvmgr
+https://github.com/jewalky/redhat
+
+PROGRAMMING:
+exc!ton
+ZZYZX
+
+Special thanks to 
+Anotomix
+
+Thanks
+Nikolay, WarBeginner,
+ILIUS, Zhuxus,
+Chariot & 
+all alloders!
+
+
+
+
+
+
 "nival.bmp"
 
 
