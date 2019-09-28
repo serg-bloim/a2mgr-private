@@ -1,13 +1,9 @@
 #include <windows.h>
 #include <string>
 
-#define URL_EU "hat.allods2.eu"
-#define URL_COM "hat.allods2.com"
-#define URL_LOCAL "127.0.0.1"
-#define URL_ATV "atvision.net"
-#define URL_TESTING "hat.allods2.eu:18000"
+#define URL "hat.tangar.info"
 
-char aHat[] = URL_EU;
+char aHat[] = URL;
 
 const char * aLogin;
 const char * aPassword;

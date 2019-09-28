@@ -64,7 +64,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDL_image.lib SDL_ttf.lib"
+				AdditionalDependencies="SDL.lib SDL_image.lib"
 				ShowProgress="0"
 				OutputFile="$(ProjectDir)/postbuild/a2mgr.dll"
 				LinkIncremental="1"
@@ -202,10 +202,6 @@
 			</File>
 			<File
 				RelativePath=".\menu.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\menulib.cpp"
 				>
 			</File>
 			<File
@@ -390,10 +386,6 @@
 			</File>
 			<File
 				RelativePath=".\language.h"
-				>
-			</File>
-			<File
-				RelativePath=".\menulib.h"
 				>
 			</File>
 			<File

@@ -682,25 +682,8 @@ int _stdcall NETPROTO_loginToHat()
 	char* pthis;
 	__asm mov pthis, ecx;
 
-	gprogress.filename = "";
-
 	std::string login = *(const char**)(pthis + 0x3C0);
 	std::string password = *(const char**)(pthis + 0x3C4);
-
-	WSADATA wsd;
-	WSAStartup(0x0101, &wsd);
-
-	using namespace zxmgr;
-	DoMessageLoop();
-
-	RECT* rcSrc2 = (RECT*)(0x0062B5D8);
-
-	LockBuffer();
-	FillRect(rcSrc2->left, rcSrc2->top, rcSrc2->right, rcSrc2->bottom, 0);
-	//void DrawText(unsigned long cptr, int x, int y, const char* string, unsigned long align, unsigned long color, unsigned long shadowpos)
-	Font::DrawText(FONT1, rcSrc2->right / 2, rcSrc2->bottom / 2, GetPatchString(227), FONT_ALIGN_CENTER, FONT_COLOR_WHITE, 0);
-	UnlockBuffer();
-	UpdateScreen();
 
 	char* uh;
 	__asm mov uh, offset aHat;
@@ -710,133 +693,6 @@ int _stdcall NETPROTO_loginToHat()
 	uint32_t crc32_a2mgr_dll = crc.CalcCRC(sha1_a2mgr_dll, 20);
 	uint32_t crc32_patch_res = crc.CalcCRC(sha1_patch_res, 20);
 	uint32_t crc32_world_res = crc.CalcCRC(sha1_world_res, 20);
-
-	std::string post_data = Format("action=check_version&language=%s&sum_allods2_exe=%08X&sum_a2mgr_dll=%08X&l=%s&p=%s",
-		z_russian ? "rus" : "eng", crc32_allods2_exe, crc32_a2mgr_dll, CurlEscape2(login).c_str(), CurlEscape2(password).c_str());
-
-	std::string text_reply = "";
-	text_reply = NETPROTO_hhGetBlockingReply("POST", "/redhat.php", post_data);
-	
-	text_reply = Trim(text_reply);
-	std::string lower_text_reply = ToLower(text_reply);
-	if(lower_text_reply.find("string|") == 0) // хэт что-то ответил
-	{
-		text_reply.erase(0, 7);
-		NETPROTO_showErrorDialog(text_reply.c_str());
-		DoMessageLoop();
-		return 0;
-	}
-	else if(lower_text_reply == "login_banned")
-	{
-		NETPROTO_showErrorDialog(GetPatchString(22));
-		DoMessageLoop();
-		return 0;
-	}
-	else if(lower_text_reply == "login_banned_fvr")
-	{
-		NETPROTO_showErrorDialog(GetPatchString(219));
-		DoMessageLoop();
-		return 0;
-	}
-	else if(lower_text_reply == "login_invalid")
-	{
-		NETPROTO_showErrorDialog(GetPatchString(20));
-		DoMessageLoop();
-		return 0;
-	}
-	else if(lower_text_reply == "ip_banned")
-	{
-		NETPROTO_showErrorDialog(GetPatchString(34));
-		DoMessageLoop();
-		return 0;
-	}
-	else if(lower_text_reply == "fuck_off")
-	{
-		NETPROTO_showErrorDialog(GetPatchString(118));
-		DoMessageLoop();
-		return 0;
-	}
-	else if(lower_text_reply == "unblock_error")
-	{
-		NETPROTO_showErrorDialog(GetPatchString(234));
-		DoMessageLoop();
-		return 0;
-	}
-
-	UpdaterInfo updater;
-	updater.result = 0;
-	hProgLock = CreateMutex(0, FALSE, NULL);
-	HANDLE thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)NETPROTO_updater, &updater, 0, NULL);
-	std::string lastName = "";
-	while (WaitForSingleObject(thread, 1) != WAIT_OBJECT_0)
-	{
-		LockProgress();
-		NETPROTO_fileProgress* progress = &gprogress;
-
-		if (progress->filename != "")
-		{
-			if (progress->filename != lastName)
-			{
-				if (lastName != "")
-					oldfilenames.push_back(lastName);
-				lastName = progress->filename;
-			}
-
-			int wd = rcSrc2->right;
-			int ht = rcSrc2->bottom;
-			int lines = ht / 2 / 16 + 1;
-			int lines_px = lines * 16;
-			int startx = wd/2 - wd/4;
-			int start = ht/2 - lines_px/2 - 16;
-			LockBuffer();
-			FillRect(rcSrc2->left, rcSrc2->top, rcSrc2->right, rcSrc2->bottom, 0);
-			Font::DrawText(FONT1, rcSrc2->right / 2, start, GetPatchString(234), FONT_ALIGN_CENTER, FONT_COLOR_WHITE, 0);
-			start += 16;
-
-			for (int i = int(oldfilenames.size()-1)-(lines-2); i < int(oldfilenames.size()); i++)
-			{
-				if (i < 0) continue;
-				std::string up = Format("%s: %s", GetPatchString(235), oldfilenames[i].c_str());
-				if (Font::MeasureTextWidth(*(unsigned long*)FONT1, up.c_str()) >= wd/2)
-					Font::DrawText(FONT1, rcSrc2->right / 2, start, up.c_str(), FONT_ALIGN_CENTER, FONT_COLOR_GRAY, 0);
-				else
-				{
-					Font::DrawText(FONT1, rcSrc2->left + startx, start, Format("%s:", GetPatchString(235)).c_str(), FONT_ALIGN_LEFT, FONT_COLOR_GRAY, 0);
-					Font::DrawText(FONT1, rcSrc2->right - startx, start, oldfilenames[i].c_str(), FONT_ALIGN_RIGHT, FONT_COLOR_GRAY, 0);
-				}
-
-				start += 16;
-			}
-			std::string up = Format("file: %s", progress->filename.c_str());
-			if (Font::MeasureTextWidth(*(unsigned long*)FONT1, up.c_str()) >= wd/2)
-				Font::DrawText(FONT1, rcSrc2->right / 2, start, up.c_str(), FONT_ALIGN_CENTER, FONT_COLOR_GRAY, 0);
-			else
-			{
-				Font::DrawText(FONT1, rcSrc2->left + startx, start, Format("%s:", GetPatchString(235)).c_str(), FONT_ALIGN_LEFT, FONT_COLOR_WHITE, 0);
-				Font::DrawText(FONT1, rcSrc2->right - startx, start, progress->filename.c_str(), FONT_ALIGN_RIGHT, FONT_COLOR_WHITE, 0);
-			}
-			start += 16;
-			uint32_t complete = progress->dltotal ? (progress->dlnow * 100.0 / progress->dltotal) : 100;
-			Font::DrawText(FONT1, rcSrc2->right - startx, start, (Format(GetPatchString(230), complete, progress->speed_string.c_str())+", "+Format(GetPatchString(236), progress->fnow, progress->ftotal)).c_str(), FONT_ALIGN_RIGHT, FONT_COLOR_WHITE, 0);
-			UnlockBuffer();
-			UpdateScreen();
-		}
-
-		UnlockProgress();
-		DisplayMouse();
-		DoMessageLoop();
-		Sleep(1);
-	}
-
-	if (updater.result != 1)
-	{
-		NETPROTO_showErrorDialog(GetPatchString(216));
-		DoMessageLoop();
-		return updater.result;
-	}
-
-	//
-	// if everything is OK with first stage
 
 	int retval = 0;
 	__asm
@@ -1062,29 +918,5 @@ void __declspec(naked) imp_MakeScreenshotNet()
 		sub		dword ptr [ecx], 1
 		mov		ecx, 0x00458003
 		jmp		ecx
-	}
-}
-
-void _stdcall MENU_close(int message);
-void __declspec(naked) NETPROTO_loginFinished()
-{
-	__asm
-	{ // 4952ED
-		// if eax is 1, close menu
-		test	eax, eax
-		jnz		loginfinishedok
-
-loginfinishedret:
-		mov		ecx, [ebp-0x0C]
-		mov		fs:[0], ecx
-		mov		esp, ebp
-		pop		ebp
-		retn
-
-loginfinishedok:
-		push	0x488
-		call	MENU_close
-		mov		eax, 1
-		jmp		loginfinishedret
 	}
 }

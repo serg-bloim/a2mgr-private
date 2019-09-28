@@ -40,7 +40,6 @@ namespace zxmgr
 		unsigned long MeasureTextWidth(unsigned long cptr, const char* string);
 	}
 
-	void DrawLine(int x1, int y1, int x2, int y2, unsigned long color);
 	void FillRect(int left, int top, int right, int bottom, unsigned long color);
 	void UpdateScreen();
 	void LockBuffer();
@@ -55,7 +54,7 @@ namespace zxmgr
 	int GlobalReceive();
 	void DisplayMouse();
 
-	void _stdcall DoMessageLoop();
+	void DoMessageLoop();
 
 	HWND GetHWND();
 

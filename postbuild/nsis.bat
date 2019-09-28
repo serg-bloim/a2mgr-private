@@ -1,6 +1,6 @@
 @echo off
 
-set VER=26
+set VER=25
 
 call log --------------------------------------
 call log copying temporary files...

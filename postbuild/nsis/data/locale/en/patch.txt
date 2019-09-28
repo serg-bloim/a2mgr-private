@@ -239,5 +239,3 @@ Sandbox
 Play
 Authors
 Quit
-Game mode:
-Remember
