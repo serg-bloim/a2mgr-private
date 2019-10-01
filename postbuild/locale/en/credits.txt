@@ -1,10 +1,9 @@
 = Tangar's Hat =
 
-Powered by
-allods2.eu sources:
-https://github.com/jewalky/a2mgr
-https://github.com/jewalky/srvmgr
-https://github.com/jewalky/redhat
+Source files:
+https://github.com/igroglaz/a2mgr
+https://github.com/igroglaz/srvmgr
+https://github.com/igroglaz/redhat
 
 PROGRAMMING:
 exc!ton

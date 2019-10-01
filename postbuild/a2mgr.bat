@@ -90,8 +90,8 @@ copy /Y ..\curl\libsasl.dll release >nul
 copy /Y add\smackw32.dll release >nul
 copy /Y add\templates.bin release\templates.bin >nul
 
-rem call nsis.bat %VER%
-rem if errorlevel 1 goto nsis_fail
+call nsis.bat %VER%
+if errorlevel 1 goto nsis_fail
 
 call log cleaning up...
 del /Q a2mgr.dll

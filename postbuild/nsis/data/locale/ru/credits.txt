@@ -1,10 +1,9 @@
 = Хэт Тангара =
 
-Работает на базе
-исходников allods2.eu:
-https://github.com/jewalky/a2mgr
-https://github.com/jewalky/srvmgr
-https://github.com/jewalky/redhat
+Исходники:
+https://github.com/igroglaz/a2mgr
+https://github.com/igroglaz/srvmgr
+https://github.com/igroglaz/redhat
 
 ПРОГРАММИРОВАНИЕ:
 exc!ton

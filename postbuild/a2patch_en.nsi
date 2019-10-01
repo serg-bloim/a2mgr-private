@@ -16,7 +16,7 @@
   OutFile "final\a2inst${VER}_en.exe"
 
   ;Default installation folder
-  InstallDir "C:\ROM2"
+  InstallDir "C:\games\RoM2"
   
   ;Get installation folder from registry if available
   InstallDirRegKey HKLM "Software\1C\Allods 2" "INSTALLDIR"
@@ -117,13 +117,13 @@ Section "Rage of Mages II: Necromancer (version ${VER})" SecDummy
     
     ;Create shortcuts
     CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
-    CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Play at Allods2.eu (1024x768).lnk" "$INSTDIR\allods2.exe" "--res:1024x768"
-    CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Play at Allods2.eu (800x600).lnk" "$INSTDIR\allods2.exe" "--res:800x600"
+    CreateShortCut "$SMPROGRAMS\$StartMenuFolder\A2 (1024x768).lnk" "$INSTDIR\allods2.exe" "--res:1024x768"
+    CreateShortCut "$SMPROGRAMS\$StartMenuFolder\A2 (800x600).lnk" "$INSTDIR\allods2.exe" "--res:800x600"
     CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Update details for version ${VER}.lnk" "$INSTDIR\patch${VER}.txt"
     CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall1.${VER}.exe"
 
-    CreateShortCut "$DESKTOP\Play at Allods2.eu (1024x768).lnk" "$INSTDIR\allods2.exe" "--res:1024x768"
-    CreateShortCut "$DESKTOP\Play at Allods2.eu (800x600).lnk" "$INSTDIR\allods2.exe" "--res:800x600"
+    CreateShortCut "$DESKTOP\A2 (1024x768).lnk" "$INSTDIR\allods2.exe" "--res:1024x768"
+    CreateShortCut "$DESKTOP\A2 (800x600).lnk" "$INSTDIR\allods2.exe" "--res:800x600"
   
   !insertmacro MUI_STARTMENU_WRITE_END
 
@@ -151,15 +151,15 @@ Section "Uninstall"
   
   !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
     
-  Delete "$SMPROGRAMS\$StartMenuFolder\Play at Allods2.eu (1024x768).lnk"
-  Delete "$SMPROGRAMS\$StartMenuFolder\Play at Allods2.eu (800x600).lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\A2 (1024x768).lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\A2 (800x600).lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Update details for version ${VER}.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk"
   RMDir "$SMPROGRAMS\$StartMenuFolder"
   
 
-    Delete "$DESKTOP\Play at Allods2.eu (1024x768).lnk"
-    Delete "$DESKTOP\Play at Allods2.eu (800x600).lnk"
+    Delete "$DESKTOP\A2 (1024x768).lnk"
+    Delete "$DESKTOP\A2 (800x600).lnk"
 
     DeleteRegKey /ifempty HKLM "Software\1C\Allods 2"
 

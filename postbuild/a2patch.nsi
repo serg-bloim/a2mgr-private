@@ -16,7 +16,7 @@
   OutFile "final\a2inst${VER}_ru.exe"
 
   ;Default installation folder
-  InstallDir "C:\Allods 2"
+  InstallDir "C:\games\Allods2"
   
   ;Get installation folder from registry if available
   InstallDirRegKey HKLM "Software\1C\Allods 2" "INSTALLDIR"
@@ -117,13 +117,13 @@ Section "Аллоды II: Повелитель Душ (версия ${VER})" SecDummy
     
     ;Create shortcuts
     CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
-    CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Играть на Allods2.eu (1024x768).lnk" "$INSTDIR\allods2.exe" "--res:1024x768"
-    CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Играть на Allods2.eu (800x600).lnk" "$INSTDIR\allods2.exe" "--res:800x600"
+    CreateShortCut "$SMPROGRAMS\$StartMenuFolder\A2 (1024x768).lnk" "$INSTDIR\allods2.exe" "--res:1024x768"
+    CreateShortCut "$SMPROGRAMS\$StartMenuFolder\A2 (800x600).lnk" "$INSTDIR\allods2.exe" "--res:800x600"
     CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Информация об обновлении ${VER}.lnk" "$INSTDIR\patch${VER}.txt"
     CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Деинсталлировать обновление ${VER}.lnk" "$INSTDIR\Uninstall1.${VER}.exe"
 
-    CreateShortCut "$DESKTOP\Играть на Allods2.eu (1024x768).lnk" "$INSTDIR\allods2.exe" "--res:1024x768"
-    CreateShortCut "$DESKTOP\Играть на Allods2.eu (800x600).lnk" "$INSTDIR\allods2.exe" "--res:800x600"
+    CreateShortCut "$DESKTOP\A2 (1024x768).lnk" "$INSTDIR\allods2.exe" "--res:1024x768"
+    CreateShortCut "$DESKTOP\A2 (800x600).lnk" "$INSTDIR\allods2.exe" "--res:800x600"
   
   !insertmacro MUI_STARTMENU_WRITE_END
 
@@ -151,15 +151,15 @@ Section "Uninstall"
   
   !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
     
-  Delete "$SMPROGRAMS\$StartMenuFolder\Играть на Allods2.eu (1024x768).lnk"
-  Delete "$SMPROGRAMS\$StartMenuFolder\Играть на Allods2.eu (800x600).lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\A2 (1024x768).lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\A2 (800x600).lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Информация об обновлении ${VER}.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Деинсталлировать обновление ${VER}.lnk"
   RMDir "$SMPROGRAMS\$StartMenuFolder"
   
 
-    Delete "$DESKTOP\Играть на Allods2.eu (1024x768).lnk"
-    Delete "$DESKTOP\Играть на Allods2.eu (800x600).lnk"
+    Delete "$DESKTOP\A2 (1024x768).lnk"
+    Delete "$DESKTOP\A2 (800x600).lnk"
 
     DeleteRegKey /ifempty HKLM "Software\1C\Allods 2"
 

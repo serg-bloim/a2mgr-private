@@ -34,7 +34,7 @@ You can join team play only if it isn't already started.
 This server is shutting down now. Please select another server.
 Your IP address is banned.
 This name is already used on this Hat. Please change it.
-Your client version is outdated or game resources are invalid. Please download latest patch from Allods2.EU.
+Your client version is outdated or game resources are invalid. Please download latest patch from website.
 Server Error 37
 Server Error 38
 Server Error 39

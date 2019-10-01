@@ -116,7 +116,7 @@ void __declspec(naked) HATENT_url_connect()
 		add		esp, 4
 		mov     ecx, 0x0069C208
 		mov		edx, 0x0051151C
-		push	offset aHat // "hat.allods2.eu"
+		push	offset aHat // адрес хэта
 		call    edx
 		mov		dword ptr [ebp-0x224], eax
 		mov		edx, 0x00494AF4
