@@ -76,7 +76,6 @@ rem move /Y worlds.res release >nul
 copy /Y whatsnew.txt release\patch%VER%.txt >nul
 copy /Y whatsnew_en.txt release\patch%VER%_en.txt >nul
 move /Y a2mgr.dll release\a2mgr.dll >nul
-copy /Y add\helper32.dll release >nul
 copy /Y locale.res release >nul
 copy /Y allods2.cfg release >nul
 copy /Y allods2_en.cfg release >nul
@@ -87,8 +86,14 @@ copy /Y ..\curl\libeay32.dll release >nul
 copy /Y ..\curl\ssleay32.dll release >nul
 copy /Y ..\curl\libsasl.dll release >nul
 
+copy /Y "add\Description Checks.ini" release >nul
+copy /Y "add\Description Instants.ini" release >nul
+copy /Y add\Music.ini release >nul
+copy /Y add\helper32.dll release >nul
 copy /Y add\smackw32.dll release >nul
 copy /Y add\templates.bin release\templates.bin >nul
+
+copy /Y original\rom2me.exe nsis\rom2me.exe >nul
 
 call nsis.bat %VER%
 if errorlevel 1 goto nsis_fail

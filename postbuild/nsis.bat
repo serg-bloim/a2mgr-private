@@ -32,6 +32,11 @@ rem copy /Y release\ssleay32.dll nsis\ssleay32.dll >nul
 rem copy /Y release\libsasl.dll nsis\libsasl.dll >nul
 rem copy /Y vcredist_x86.exe nsis\vcredist_x86.exe >nul
 
+copy /Y "release\Description Checks.ini" "nsis\Description Checks.ini" >nul
+copy /Y "release\Description Instants.ini" "nsis\Description Instants.ini" >nul
+copy /Y release\Music.ini nsis\Music.ini >nul
+copy /Y release\templates.bin nsis\templates.bin >nul
+
 call log compiling NSIS installer..
 
 rem TODO: make single nsis script
