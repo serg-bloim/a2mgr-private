@@ -5,9 +5,12 @@
 #include "zxmgr.h"
 #include "lib\utils.hpp"
 #include "File.h"
+#include "a2mgr.h"
 
 Image::Image(std::string filename)
 {
+	TryInitSDL();
+	
 	myPixels = NULL;
 	myWidth = 0;
 	myHeight = 0;
