@@ -6,21 +6,34 @@
 #include "lib\utils.hpp"
 #include "File.h"
 
+bool SDLInitialized = false;
+HANDLE SDLInitMutex = NULL;
+
+void InitSDL()
+{
+	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+		log_format("ERROR: Failed to initialize SDL video (%s)\n", SDL_GetError());
+		return;
+	}
+	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF) !=
+		(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF)) {
+		log_format("ERROR: Failed to initialize SDL image (%s)\n", IMG_GetError());
+		return;
+	}
+}
+
 void TryInitSDL()
 {
-	static bool SDL_initialized = false;
-	if (!SDL_initialized)
+	if (!SDLInitialized)
 	{
-		SDL_initialized = true;
-		if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-			log_format("ERROR: Failed to initialize SDL video (%s)\n", SDL_GetError());
-			return;
+		if (!SDLInitMutex) SDLInitMutex = CreateMutex(NULL, TRUE, NULL);
+		else WaitForSingleObject(SDLInitMutex, INFINITE);
+		if (!SDLInitialized)
+		{
+			InitSDL();
+			SDLInitialized = true;
 		}
-		if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF) !=
-			(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF)) {
-			log_format("ERROR: Failed to initialize SDL image (%s)\n", IMG_GetError());
-			return;
-		}
+		ReleaseMutex(SDLInitMutex);
 	}
 }
 
