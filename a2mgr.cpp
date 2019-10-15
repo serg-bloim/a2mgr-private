@@ -155,9 +155,6 @@ bool _stdcall DllMain_Init(HINSTANCE hModule, DWORD ul_reason_for_call, LPVOID l
 
 	PSCRL_InitializeInjection();
 
-	if(SDL_Init(SDL_INIT_VIDEO) == -1) return false;
-	if(IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF) !=
-		(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF)) return false;
 /*
 	Archives.Open("./graphics.res", "graphics");
 	Archives.Open("./main.res", "main");
