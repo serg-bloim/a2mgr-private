@@ -5,37 +5,7 @@
 #include "zxmgr.h"
 #include "lib\utils.hpp"
 #include "File.h"
-
-bool SDLInitialized = false;
-HANDLE SDLInitMutex = NULL;
-
-void InitSDL()
-{
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		log_format("ERROR: Failed to initialize SDL video (%s)\n", SDL_GetError());
-		return;
-	}
-	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF) !=
-		(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF)) {
-		log_format("ERROR: Failed to initialize SDL image (%s)\n", IMG_GetError());
-		return;
-	}
-}
-
-void TryInitSDL()
-{
-	if (!SDLInitialized)
-	{
-		if (!SDLInitMutex) SDLInitMutex = CreateMutex(NULL, TRUE, NULL);
-		else WaitForSingleObject(SDLInitMutex, INFINITE);
-		if (!SDLInitialized)
-		{
-			InitSDL();
-			SDLInitialized = true;
-		}
-		ReleaseMutex(SDLInitMutex);
-	}
-}
+#include "a2mgr.h"
 
 Image::Image(std::string filename)
 {
