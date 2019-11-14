@@ -37,6 +37,13 @@ copy /Y "release\Description Instants.ini" "nsis\Description Instants.ini" >nul
 copy /Y release\Music.ini nsis\Music.ini >nul
 copy /Y release\templates.bin nsis\templates.bin >nul
 
+rem vvvvvvvv COPYING DATA FROM tmp FOLDER vvvvvvvvv
+cd world && ..\databin2xml --compress data.xml data.bin >nul
+rem copy /Y world\data.bin tmp\data\data.bin >nul
+cd ..
+copy /Y world\data.bin nsis\data\world\data\data.bin >nul
+rem ^^^^^^^^ COPYING DATA FROM tmp FOLDER ^^^^^^^^^
+
 call log compiling NSIS installer..
 
 rem TODO: make single nsis script
@@ -67,6 +74,12 @@ rem exit 1
 :remove_temp
 
 call log deleting temporary files...
+
+rem delete data.bin
+if exist world\data.bin del /Q /F world\data.bin >nul
+if exist nsis\data\world\data\data.bin del /Q /F nsis\data\world\data\data.bin >nul
+rem delete data.bin
+
 if exist nsis\a2mgr.dll del /Q /F nsis\a2mgr.dll >nul
 if exist nsis\allods2.exe del /Q /F nsis\allods2.exe >nul
 if exist nsis\helper32.dll del /Q /F nsis\helper32.dll >nul
