@@ -169,6 +169,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\game_utils.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\grid.cpp"
 				>
 			</File>
@@ -381,11 +385,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\game_objects\game_objects.h"
+				>
+			</File>
+			<File
+				RelativePath=".\game_utils.h"
+				>
+			</File>
+			<File
 				RelativePath=".\gl.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Image.h"
+				>
+			</File>
+			<File
+				RelativePath=".\game_objects\inv.h"
+				>
+			</File>
+			<File
+				RelativePath=".\game_objects\inv_hotkey.h"
 				>
 			</File>
 			<File
@@ -422,6 +442,10 @@
 			</File>
 			<File
 				RelativePath=".\stdint.h"
+				>
+			</File>
+			<File
+				RelativePath=".\game_objects\types.h"
 				>
 			</File>
 			<File

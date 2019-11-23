@@ -263,9 +263,9 @@ std::string CurlEscape2(std::string what)
 #define APIU_NAME2 "api.allods2.eu"
 #define APIU_PORT2 80
 #else
-#define APIU_NAME "127.0.0.1"
+#define APIU_NAME "192.168.56.1"
 #define APIU_PORT 80
-#define APIU_NAME2 "127.0.0.1"
+#define APIU_NAME2 "192.168.56.1"
 #define APIU_PORT2 80
 #endif
 
@@ -720,7 +720,7 @@ struct ScreenshotInfo
 extern char aHat[];
 int Cl_ScreenshotThread(const ScreenshotInfo* si)
 {
-	SOCKET s = SOCK_Connect("hat.tangar.info", 8000, "0.0.0.0", 0);
+	SOCKET s = SOCK_Connect("192.168.56.1", 8000, "0.0.0.0", 0);
 
 	Packet p;
 	p.WriteUInt32(0x5C0EE250);
