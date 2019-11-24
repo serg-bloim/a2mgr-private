@@ -3,6 +3,9 @@
 #include <map>
 #include <algorithm>
 #include <string>
+#include <sstream>
+#include <iomanip>
+#include "logging.h"
 
 using namespace std;
 
@@ -25,6 +28,8 @@ void init_hotkeymap()
 
 bool is_hotkey_present(int hotkey, string item)
 {
+    stringstream ss;
+    ss << "Item's data: " << toHex(item) << "\n";
     if (hotkeys.find(hotkey) != hotkeys.end())
     {
         vector<string> itms = hotkeys[hotkey];
