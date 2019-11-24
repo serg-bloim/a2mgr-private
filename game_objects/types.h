@@ -1,6 +1,10 @@
 #pragma once
 #include <windows.h>
 
-#define _BYTE BYTE
-#define _DWORD DWORD
-#define _WORD WORD
+// #define BYTE _BYTE
+// #define DWORD _DWORD
+// #define WORD _WORD
+
+typedef BYTE _BYTE;
+typedef DWORD _DWORD;
+typedef WORD _WORD;

@@ -1,64 +1,95 @@
-#pragma optimize( "g", off )
+#pragma optimize("g", off)
 #include "logging.h"
 #include "game_utils.h"
+#include "extended_hotkeys_config.h"
 #include <cstdio>
 #include <iostream>
 #include <string>
+#include "game_objects/inv.h"
+#include "game_objects/game.h"
+#include <sstream>
+#include <iomanip>
 
-// typedef int* (*funptr)();
-
+using namespace std;
 int __declspec(noinline) keyboard_handle_extra_keys(int key)
 {
-    
     char buffer[100];
-    T_GAME* game = get_game_obj();
-    if(game){
-        sprintf(buffer, "game addr is %08X", game);
+    sprintf(buffer, "key code is %d", key);
+    log(buffer);
+    init_hotkeymap();
+    T_GAME *game = get_game_obj();
+    if (game)
+    {
+        sprintf(buffer, "game addr is 0x%08X", game);
         log(buffer);
-        if(game->inventory){
-            sprintf(buffer, "game->inventory addr is %08X", game->inventory);
+        if (game->inventory)
+        {
+            sprintf(buffer, "game->inventory addr is 0x%08X", game->inventory);
             log(buffer);
-            if(game->inventory->item_list){
-                sprintf(buffer, "game->inventory->item_list addr is %08X", game->inventory->item_list);
+            if (game->inventory->item_list)
+            {
+                sprintf(buffer, "game->inventory->item_list addr is 0x%08X", game->inventory->item_list);
                 log(buffer);
-                int size = 0;
-                size = get_list_size(game->inventory->item_list);
-
+                int size = get_list_size(game->inventory->item_list);
+                for (int i = 0; i < size; i++)
+                {
+                    __asm{
+                        nop
+                        nop
+                        nop
+                    }
+                    T_INVENTORY_ITEM **itemNode = get_list_item((void *)game->inventory->item_list, i);
+                    T_INVENTORY_ITEM *item = *itemNode;
+                    string data;
+                    for (int j = 0; j < item->data_size; j++)
+                    {
+                        data.push_back(item->data[j]);
+                    }
+                    if (is_hotkey_present(key, data))
+                    {
+                        stringstream ss;
+                        ss << "hotkey " << key << " matches item '";
+                        for (int j = 0; j < item->data_size; j++)
+                        {
+                            ss << std::uppercase << std::setfill('0') << std::setw(2) << std::hex << item->data[j] << " ";
+                        }
+                        log(ss.str().c_str());
+                    }
+                }
                 sprintf(buffer, "inventory size is %d", size);
                 log(buffer);
             }
         }
     }
-    
+
     return (int)game;
 }
 
 void __stdcall keyboard_handle_extra_keys_wrapper_inner()
 {
-  int key;
-  int b;
-  __asm{
+    int key;
+    int b;
+    __asm {
       mov       ecx, [ebp+8h]
       mov       ecx, [ecx + 8]
       mov       key, ecx
       mov       key, ecx
-  }
-  keyboard_handle_extra_keys(key);
+    }
+    keyboard_handle_extra_keys(key);
 }
 void __declspec(naked) keyboard_handle_extra_keys_wrapper()
 {
     __asm
-    {
+        {
         push    ebp
         mov     ebp, esp
-    }
+        }
     keyboard_handle_extra_keys_wrapper_inner();
-	__asm
-	{
+    __asm
+    {
         pop     ebp
         mov     ecx, [ebp+8h]
         mov     [ebp-18h], ecx
         ret
-	}
+    }
 }
-

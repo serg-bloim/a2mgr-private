@@ -9,8 +9,8 @@ struct __declspec(align(4)) T_INVENTORY_ITEM
   _BYTE gap0[6];
   _WORD hotkey_ind_assiged;
   _BYTE gap1[2];
-  _BYTE byteA;
-  _BYTE *id;
+  char data_size;
+  _BYTE *data;
 };
 struct __declspec(align(4)) CLASS_INVENTORY
 {

@@ -165,6 +165,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\extended_hotkeys_config.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\File.cpp"
 				>
 			</File>
@@ -378,6 +382,10 @@
 			</File>
 			<File
 				RelativePath=".\debug.h"
+				>
+			</File>
+			<File
+				RelativePath=".\extended_hotkeys_config.h"
 				>
 			</File>
 			<File

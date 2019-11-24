@@ -15,3 +15,17 @@ int get_list_size(void * list){
     }
     return res;
 }
+
+T_INVENTORY_ITEM** get_list_item(void * list, int item){
+    void * res;
+    __asm
+    {
+        mov     ecx, list
+        mov     edx, item
+        push    edx
+        mov     edx, 0x421870
+        call    edx
+        mov     res, eax
+    }
+    return (T_INVENTORY_ITEM **)res;
+}
