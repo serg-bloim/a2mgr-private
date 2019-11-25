@@ -40,7 +40,7 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
                     }
                     T_INVENTORY_ITEM **itemNode = get_list_item((void *)game->inventory->item_list, i);
                     T_INVENTORY_ITEM *item = *itemNode;
-                    string data;
+                    bytearray data;
                     for (int j = 0; j < item->data_size; j++)
                     {
                         data.push_back(item->data[j]);
@@ -48,12 +48,16 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
                     if (is_hotkey_present(key, data))
                     {
                         stringstream ss;
-                        ss << "hotkey " << key << " matches item '";
-                        for (int j = 0; j < item->data_size; j++)
+                        ss << "hotkey " << key << " matches item '" << toHex(data);
+                        log(ss.str());
+                        int gear_type = item->getTypeWrapper();
+                        sprintf(buffer, "gearType = %d", gear_type);
+                        log(buffer);
+                        item = put_on_inventory_item(game->inventory, i, 1);
+                        if ( item )
                         {
-                            ss << std::uppercase << std::setfill('0') << std::setw(2) << std::hex << item->data[j] << " ";
+                            //(*(void (__thiscall **)(_DWORD, int))(*(_DWORD *)game->pdwordE0 + 124))(game->pdwordE0, gear_type - 1);
                         }
-                        log(ss.str().c_str());
                     }
                 }
                 sprintf(buffer, "inventory size is %d", size);

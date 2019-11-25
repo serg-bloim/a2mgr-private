@@ -207,7 +207,8 @@ bool _stdcall DllMain_Init(HINSTANCE hModule, DWORD ul_reason_for_call, LPVOID l
 		}
 	}
 
-	//startLogging();
+	startLogging();
+	log("Start logging");
 	return true;
 }
 
@@ -216,7 +217,7 @@ void _stdcall DllMain_Shutdown(HINSTANCE hModule, DWORD ul_reason_for_call, LPVO
 	log_format("a2mgr closed.\n");
 	if(u_pid_string_delete) delete u_pid_string_delete;
 	if(u_pid_string) delete u_pid_string;
-	//stopLogging();
+	stopLogging();
 }
 
 BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)

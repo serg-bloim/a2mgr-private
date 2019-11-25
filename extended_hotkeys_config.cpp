@@ -8,33 +8,38 @@
 #include "logging.h"
 
 using namespace std;
-
-map<int, vector<string>> hotkeys;
+map<int, vector<bytearray>> hotkeys;
 bool hotkeys_initialized = false;
 
-void init_hotkeymap()
-{
-    if (!hotkeys_initialized)
-    {
+vector<char> convert( const char arr[], int size) {
+    vector<char> v(arr, arr + size-1);
+    return v;
+}
+
+void init_hotkeymap() {
+    if (!hotkeys_initialized) {
         hotkeys_initialized = true;
         // string item1 = "\x01\x2f\x08\x02\x00\x33\x00\x29\x1a\x32\x64";
-        string item1 = "\x01\x45\x5c\x24\x00\x0f\x0f\x33\x00\x25\x12";
-        hotkeys[90].push_back(item1);
+        const char item1[] = "\x01\x45\x5C\x24\x00\x0F\x0F\x33\x00\x25\x12";
+        hotkeys[90].push_back(convert(item1, sizeof(item1)));
         // for(string::iterator it = item1.begin(); it != item1.end(); it++){
         //     hotkeys[90][0].push_back(*it);
         // }
+        stringstream ss;
+        ss << "Binded item is: '" << toHex(hotkeys[90][0]) << "'";
+        log(ss.str());
     }
 }
 
-bool is_hotkey_present(int hotkey, string item)
-{
+bool is_hotkey_present(int hotkey, bytearray item) {
     stringstream ss;
-    ss << "Item's data: " << toHex(item) << "\n";
-    if (hotkeys.find(hotkey) != hotkeys.end())
-    {
-        vector<string> itms = hotkeys[hotkey];
-        if (std::find(itms.begin(), itms.end(), item) != itms.end())
-        {
+    ss << "Item's data: '" << toHex(item) << "'";
+    log(ss.str());
+    if (hotkeys.find(hotkey) != hotkeys.end()) {
+        log("Found a hotkey!");
+        vector<bytearray> itms = hotkeys[hotkey];
+        if (std::find(itms.begin(), itms.end(), item) != itms.end()) {
+            log("Found a match!");
             return true;
         }
     }
@@ -54,18 +59,14 @@ bool is_hotkey_present(int hotkey, string item)
 //     return false;
 // }
 
-bool iventory_data_compare(vector<char> data1, vector<char> data2)
-{
-    if (data1.size() != data2.size())
-    {
+bool iventory_data_compare(vector<char> data1, vector<char> data2) {
+    if (data1.size() != data2.size()) {
         return false;
     }
     std::vector<char>::iterator it1 = data1.begin();
     std::vector<char>::iterator it2 = data2.begin();
-    while (it1 != data1.end() || it2 != data2.end())
-    {
-        if (*it1 != *it2)
-        {
+    while (it1 != data1.end() || it2 != data2.end()) {
+        if (*it1 != *it2) {
             return false;
         }
         it1++;

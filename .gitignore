@@ -22,3 +22,7 @@ postbuild/final
 
 postbuild/log.txt
 postbuild/a2mgr.map
+/cmake-build-debug/
+/.idea/
+/cmake-build-debug-visual-studio/
+/CMakeLists.txt

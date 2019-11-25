@@ -281,6 +281,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\game_objects\utils.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(InputName)2.obj"
+						XMLDocumentationFileName="$(IntDir)\$(InputName)2.xdc"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\video_init.cpp"
 				>
 			</File>
@@ -454,6 +467,10 @@
 			</File>
 			<File
 				RelativePath=".\game_objects\types.h"
+				>
+			</File>
+			<File
+				RelativePath=".\game_objects\utils.h"
 				>
 			</File>
 			<File

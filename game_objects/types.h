@@ -8,3 +8,5 @@
 typedef BYTE _BYTE;
 typedef DWORD _DWORD;
 typedef WORD _WORD;
+typedef unsigned int uint;
+typedef unsigned char uchar;
