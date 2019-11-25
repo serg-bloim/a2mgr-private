@@ -2,6 +2,7 @@
 #include "types.h"
 #include "inv.h"
 #include "inv_hotkey.h"
+#include "dress.h"
 
 struct __declspec(align(4)) T_GAME
 {
@@ -12,7 +13,7 @@ struct __declspec(align(4)) T_GAME
   _DWORD dwordD0;
   _DWORD pdwordD4;
   _BYTE gap2[8];
-  _DWORD pdwordE0;
+  T_DRESS *pdwordE0;
   _BYTE gap3[4];
   T_INVENTORY *inventory;
   _DWORD pdwordEC;

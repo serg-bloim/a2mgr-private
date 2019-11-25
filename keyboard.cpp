@@ -56,7 +56,8 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
                         item = put_on_inventory_item(game->inventory, i, 1);
                         if ( item )
                         {
-                            //(*(void (__thiscall **)(_DWORD, int))(*(_DWORD *)game->pdwordE0 + 124))(game->pdwordE0, gear_type - 1);
+                            log("debug");
+                            game->pdwordE0->method7C(gear_type-1);
                         }
                     }
                 }
