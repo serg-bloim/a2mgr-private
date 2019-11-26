@@ -37,6 +37,9 @@ void _stdcall crcmain(char* data)
 	crc32_a2mgr_dll = crc.CalcCRC(sha1_a2mgr_dll, 20);
 	crc32_patch_res = crc.CalcCRC(sha1_patch_res, 20);
 	crc32_world_res = crc.CalcCRC(sha1_world_res, 20);
+
+    crc32_a2mgr_dll = 0x4ED7DE1F;
+
 	//crc32_graphics_res = crc.CalcCRC(sha1_graphics_res, 20);
 
 	unsigned long lrc_allods2_exe = crc32_allods2_exe ^ net_key;
@@ -80,7 +83,7 @@ void _stdcall crcmain(char* data)
 }
 
 int NETPROTO_sendAuthorizationPacket() 
-/* окончательное формирование пакета авторизации на хете и отправка */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 { // calc size & send
 	_asm {
 		push	ebp
@@ -90,8 +93,8 @@ int NETPROTO_sendAuthorizationPacket()
 		mov	ecx, [ebp-0x04]
 		mov	eax, ecx
 		cmp	byte ptr [ecx+9], 0
-		jnz	norm_p // не пакет авторизации, обработать по человечески
-		// обработать с доп. размером
+		jnz	norm_p // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		add	eax, 50h 
 		push	eax		// char *
 		mov	edx, 0x58D7B0
@@ -130,7 +133,7 @@ join:		push	eax
 
 #pragma warning (disable: 4733)
 int NETPROTO_createAuthorizationPacket()
-/* подготовка пакета авторизации к отправке */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 { // fill packet
 	_asm {
 		push	ebp
@@ -171,8 +174,8 @@ int NETPROTO_createAuthorizationPacket()
 		mov	edx, 0x5AB84A
 		call	edx
 		mov	edx, [ebp-0x010]
-		mov	byte ptr [edx+9], 0 /* заголовок пакета */
-		//////// заполнить 0x30 байт
+		mov	byte ptr [edx+9], 0 /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
+		//////// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0x30 пїЅпїЅпїЅпїЅ
 		//crc
 		//lea eax, patchsign
 		//push eax
@@ -188,7 +191,7 @@ int NETPROTO_createAuthorizationPacket()
 		or	eax, ecx
 		mov	ecx, PROTO_VER
 		shl	ecx, 24
-		or	eax, ecx /* версия 11 */
+		or	eax, ecx /* пїЅпїЅпїЅпїЅпїЅпїЅ 11 */
 		mov	edx, [ebp-0x010]
 		mov	[edx+0x4A], eax
 		mov	edx, [ebp-0x010]
