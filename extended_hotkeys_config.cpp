@@ -42,9 +42,9 @@ void init_hotkeymap() {
 bool is_hotkey_present(int hotkey, bytearray item) {
     stringstream ss;
     ss << "Item's data: '" << toHex(item) << "'";
-    log(ss.str());
+//    log(ss.str());
     if (hotkeys.find(hotkey) != hotkeys.end()) {
-        log("Found a hotkey!");
+//        log("Found a hotkey!");
         vector<bytearray> itms = hotkeys[hotkey];
         if (std::find(itms.begin(), itms.end(), item) != itms.end()) {
             log("Found a match!");

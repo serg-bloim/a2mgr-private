@@ -21,15 +21,15 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
     if (game)
     {
         sprintf(buffer, "game addr is 0x%08X", game);
-        log(buffer);
+//        log(buffer);
         if (game->inventory)
         {
             sprintf(buffer, "game->inventory addr is 0x%08X", game->inventory);
-            log(buffer);
+//            log(buffer);
             if (game->inventory->item_list)
             {
                 sprintf(buffer, "game->inventory->item_list addr is 0x%08X", game->inventory->item_list);
-                log(buffer);
+//                log(buffer);
                 int size = get_list_size(game->inventory->item_list);
                 for (int i = 0; i < size; i++)
                 {
@@ -56,7 +56,7 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
                         item = put_on_inventory_item(game->inventory, i, 1);
                         if ( item )
                         {
-                            log("debug");
+//                            log("debug");
                             game->pdwordE0->method7C(gear_type-1);
                         }
                     }
