@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include "logging.h"
+#include "hotkey_config/HotKeyConfig.h"
 
 using namespace std;
 map<int, vector<bytearray>> hotkeys;
@@ -18,20 +19,23 @@ vector<char> convert( const char arr[], int size) {
 
 void init_hotkeymap() {
     if (!hotkeys_initialized) {
+        log("start reading hotkeys.txt");
         hotkeys_initialized = true;
-        // string item1 = "\x01\x2f\x08\x02\x00\x33\x00\x29\x1a\x32\x64";
-        const char item1[] = "\x01\x45\x5C\x24\x00\x0F\x0F\x33\x00\x25\x12";
-        const char item2[] = "\x01\x89\x6E\x0F\x00\x0F\x0A\x33\x00\x25\x0F";
-        const char item3[] = "\x01\xC5\x4F\x24\x00\x0F\x07\x33\x00\x25\x12";
-        hotkeys[90].push_back(convert(item1, sizeof(item1)));
-        hotkeys[90].push_back(convert(item2, sizeof(item2)));
-        hotkeys[90].push_back(convert(item3, sizeof(item3)));
-        // for(string::iterator it = item1.begin(); it != item1.end(); it++){
-        //     hotkeys[90][0].push_back(*it);
-        // }
+        HotKeyConfig conf;
+        conf.load("hotkeys.txt");
+        hotkeys = conf.getAsMap();
+
         stringstream ss;
-        ss << "Binded item is: '" << toHex(hotkeys[90][0]) << "'";
-        log(ss.str());
+        for (map<int,vector<bytearr>>::iterator it = hotkeys.begin(); it!=hotkeys.end(); ++it){
+            vector<bytearr> itms = it->second;
+            ss << it->first << "(" << itms.size() << ") = ";
+            for (vector<bytearr>::iterator it2 = itms.begin(); it2 != itms.end(); it2++){
+                ss << toHex(*it2) << "; ";
+            }
+            log(ss.str());
+            ss.clear();
+        }
+        log("end reading hotkeys.txt");
     }
 }
 
