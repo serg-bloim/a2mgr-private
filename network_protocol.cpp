@@ -38,6 +38,7 @@ void _stdcall crcmain(char* data)
 	crc32_patch_res = crc.CalcCRC(sha1_patch_res, 20);
 	crc32_world_res = crc.CalcCRC(sha1_world_res, 20);
 
+    crc32_allods2_exe= 0x188800FC;
     crc32_a2mgr_dll = 0x4ED7DE1F;
 
 	//crc32_graphics_res = crc.CalcCRC(sha1_graphics_res, 20);
