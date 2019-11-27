@@ -55,17 +55,15 @@ void HotKeyConfig::load(string filename) {
                     //skip
                     break;
                 case '\n':
-                    log("push_back\\n");
                 case ';':
-                    hotkeys[hotkey].push_back(stoba(buffer));
-                    buffer.clear();
+                    if(buffer.size() > 0 && hotkey != -1) {
+                        hotkeys[hotkey].push_back(stoba(buffer));
+                        buffer.clear();
+                    }
                     break;
                 case '=':
                     stringstream(buffer) >> hotkey;
                     buffer.clear();
-                    ss << "Found hotkey " << hotkey;
-                    log(ss.str());
-                    ss.clear();
                     break;
                 default:
                     if((ch >= '0' && ch <='9' )||

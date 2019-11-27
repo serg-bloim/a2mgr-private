@@ -13,10 +13,13 @@
 using namespace std;
 int __declspec(noinline) keyboard_handle_extra_keys(int key)
 {
+    if(key ==75){
+        init_hotkeymap(true);
+    }
     char buffer[100];
     sprintf(buffer, "key code is %d", key);
     log(buffer);
-    init_hotkeymap();
+    init_hotkeymap(false);
     T_GAME *game = get_game_obj();
     if (game)
     {
@@ -30,6 +33,7 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
             {
                 sprintf(buffer, "game->inventory->item_list addr is 0x%08X", game->inventory->item_list);
 //                log(buffer);
+
                 int size = get_list_size(game->inventory->item_list);
                 for (int i = 0; i < size; i++)
                 {
@@ -45,10 +49,11 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
                     {
                         data.push_back(item->data[j]);
                     }
+
                     if (is_hotkey_present(key, data))
                     {
                         stringstream ss;
-                        ss << "hotkey " << key << " matches item '" << toHex(data);
+                        ss << "hotkey " << key << " matches item '" << toHex(data) << " ; " << toHex2(data);
                         log(ss.str());
                         int gear_type = item->getTypeWrapper();
                         sprintf(buffer, "gearType = %d", gear_type);
@@ -59,6 +64,11 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
 //                            log("debug");
                             game->pdwordE0->method7C(gear_type-1);
                         }
+                    }else if(key == 75){
+                        stringstream ss;
+                        int gear_type = item->getTypeWrapper();
+                        ss << "item type (" << gear_type << ") " << toHex(data) << " ; " << toHex2(data);
+                        log(ss.str());
                     }
                 }
                 sprintf(buffer, "inventory size is %d", size);

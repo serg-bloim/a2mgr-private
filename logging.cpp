@@ -36,7 +36,15 @@ string toHex(vector<char> str){
     stringstream ss;
     vector<char>::iterator itr = str.begin();
     for (;itr != str.end();  itr++ ){
-      ss << "\\x" << std::uppercase << std::setfill('0') << std::setw(2) << std::hex << (uint)(uchar)*itr;
+        ss << "\\x" << std::uppercase << std::setfill('0') << std::setw(2) << std::hex << (uint)(uchar)*itr;
+    }
+    return ss.str();
+}
+string toHex2(vector<char> str){
+    stringstream ss;
+    vector<char>::iterator itr = str.begin();
+    for (;itr != str.end();  itr++ ){
+        ss << std::uppercase << std::setfill('0') << std::setw(2) << std::hex << (uint)(uchar)*itr << " ";
     }
     return ss.str();
 }

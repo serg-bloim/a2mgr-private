@@ -17,8 +17,8 @@ vector<char> convert( const char arr[], int size) {
     return v;
 }
 
-void init_hotkeymap() {
-    if (!hotkeys_initialized) {
+void init_hotkeymap(bool force) {
+    if (!hotkeys_initialized || force) {
         log("start reading hotkeys.txt");
         hotkeys_initialized = true;
         HotKeyConfig conf;
