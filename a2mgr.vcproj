@@ -129,6 +129,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\autoheal\autoheal.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\chat.cpp"
 				>
 			</File>
@@ -281,6 +285,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\utils.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\game_objects\utils.cpp"
 				>
 				<FileConfiguration
@@ -292,10 +300,6 @@
 						XMLDocumentationFileName="$(IntDir)\$(InputName)2.xdc"
 					/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\utils.cpp"
-				>
 			</File>
 			<File
 				RelativePath=".\video_init.cpp"
@@ -375,6 +379,10 @@
 			>
 			<File
 				RelativePath=".\a2mgr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\autoheal\autoheal.h"
 				>
 			</File>
 			<File
@@ -475,6 +483,10 @@
 			</File>
 			<File
 				RelativePath=".\game_objects\types.h"
+				>
+			</File>
+			<File
+				RelativePath=".\game_objects\unit_view.h"
 				>
 			</File>
 			<File

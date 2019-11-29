@@ -130,3 +130,7 @@ DBG_decideState @304
 
 ; keyboard extension
 keyboard_handle_extra_keys_wrapper  @201
+; autoheal
+update_unit_wrapper @202
+update_unit_health_wrapper @203
+update_unit_health2_wrapper @204
