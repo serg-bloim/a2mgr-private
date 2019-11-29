@@ -47,3 +47,10 @@ T_INVENTORY_ITEM* put_on_inventory_item(T_INVENTORY *inv, int ind, signed int a2
     }
     return res;
 }
+
+__declspec(noinline) void applyInventoryItem( int a2, int inv_item_ind, int amountQ, int gear_type, int a6, void* mission){
+    __asm{
+        mov     ecx, mission
+    }
+    ths_wrapper((void *)0x0041C053);
+}

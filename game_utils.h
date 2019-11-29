@@ -8,7 +8,7 @@
 int get_list_size(void * list);
 T_INVENTORY_ITEM** get_list_item(void *list, int item);
 T_INVENTORY_ITEM* put_on_inventory_item(T_INVENTORY *inv, int ind, signed int a2);
-
+void applyInventoryItem( int a2, int inv_item_ind, int amountQ, int gear_type, int a6, void* mission);
 
 //std::stack<_DWORD> returns;
 //void __stdcall push_return(_DWORD addr){

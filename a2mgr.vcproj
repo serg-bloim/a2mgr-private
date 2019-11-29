@@ -462,6 +462,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\game_objects\network.h"
+				>
+			</File>
+			<File
 				RelativePath=".\network_crypt.h"
 				>
 			</File>

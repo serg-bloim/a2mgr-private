@@ -21,6 +21,10 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
     log(buffer);
     init_hotkeymap(false);
     T_GAME *game = get_game_obj();
+    if(key == 74){
+        int inv_item_ind = 1;
+        game->dwordD0->applyInventoryItem(2, inv_item_ind, 1, 0xE, 1);
+    }
     if (game)
     {
         sprintf(buffer, "game addr is 0x%08X", game);
