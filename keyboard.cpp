@@ -9,21 +9,23 @@
 #include "game_objects/game.h"
 #include <sstream>
 #include <iomanip>
+#include "hotkey_config/GeneralConfig.h"
 
 using namespace std;
 int __declspec(noinline) keyboard_handle_extra_keys(int key)
 {
     if(key ==75){
-        init_hotkeymap(true);
+        gConf.reload();
     }
     char buffer[100];
     sprintf(buffer, "key code is %d", key);
     log(buffer);
-    init_hotkeymap(false);
     T_GAME *game = get_game_obj();
     if(key == 74){
-        int inv_item_ind = 1;
-        game->dwordD0->applyInventoryItem(2, inv_item_ind, 1, 0xE, 1);
+        bytearr potionSignature = gConf.potionHealthSmall();
+//        log
+        int ind = game->inventory->find_item(potionSignature);
+        log(ind);
     }
     if (game)
     {
@@ -48,7 +50,7 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
                     }
                     T_INVENTORY_ITEM **itemNode = get_list_item((void *)game->inventory->item_list, i);
                     T_INVENTORY_ITEM *item = *itemNode;
-                    bytearray data;
+                    bytearr data;
                     for (int j = 0; j < item->data_size; j++)
                     {
                         data.push_back(item->data[j]);

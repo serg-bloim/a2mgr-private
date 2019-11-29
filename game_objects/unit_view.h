@@ -50,7 +50,7 @@ struct __declspec(align(2)) T_UNIT_VIEW
         _BYTE gap10[11];
         short health;
         _BYTE gap11[2];
-        _WORD word108;
+        short maxHealth;;
         _WORD word10A;
         _WORD word10C;
         _WORD word10E;

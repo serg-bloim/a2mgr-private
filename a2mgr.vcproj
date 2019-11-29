@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\game_objects\inv.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\itempng.cpp"
 				>
 			</File>
@@ -289,6 +293,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\utils.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\game_objects\utils.cpp"
 				>
 				<FileConfiguration
@@ -300,10 +308,6 @@
 						XMLDocumentationFileName="$(IntDir)\$(InputName)2.xdc"
 					/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\utils.cpp"
-				>
 			</File>
 			<File
 				RelativePath=".\video_init.cpp"
@@ -506,11 +510,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\utils.h"
+				RelativePath=".\game_objects\utils.h"
 				>
 			</File>
 			<File
-				RelativePath=".\game_objects\utils.h"
+				RelativePath=".\utils.h"
 				>
 			</File>
 			<File

@@ -21,6 +21,7 @@
 #include <SDL/SDL_image.h>
 
 #include "logging.h"
+#include "hotkey_config/GeneralConfig.h"
 
 using namespace std;
 
@@ -209,6 +210,7 @@ bool _stdcall DllMain_Init(HINSTANCE hModule, DWORD ul_reason_for_call, LPVOID l
 
 	startLogging();
 	log("Start logging");
+	gConf.reload();
 	return true;
 }
 

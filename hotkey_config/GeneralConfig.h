@@ -13,17 +13,43 @@
 class GeneralConfig {
 public:
     GeneralConfig(std::string file);
-    HotKeyConfig* getHotKeyConfig();
+
+    HotKeyConfig *getHotKeyConfig();
+
     int getAutoHealLowBoundary();
+
     int getAutoHealHighBoundary();
+
+    bytearr potionHealthBig();
+
+    bytearr potionHealthSmall();
+
+    bytearr potionManaBig();
+
+    bytearr potionManaSmall();
+
+    bytearr potionHealthRegen();
+
+    bytearr potionManaRegen();
+
+    bytearr autoHealLowBoundary();
+
     void reload();
 
 private:
     std::string filename;
-    int autoHealLowBoundary;
-    int autoHealHighBoundary;
+    HotKeyConfig _hotkeyConfig;
+    int _autoHealLowBoundary;
+    int _autoHealHighBoundary;
+
+    bytearr _potionHealthBig;
+    bytearr _potionHealthSmall;
+    bytearr _potionManaBig;
+    bytearr _potionManaSmall;
+    bytearr _potionHealthRegen;
+    bytearr _potionManaRegen;
 };
 
-GeneralConfig gConf("config.ini");
+extern GeneralConfig gConf;
 
 #endif //A2MGR_GENERALCONFIG_H

@@ -47,4 +47,5 @@ struct __declspec(align(4)) T_INVENTORY {
     _DWORD *dword88;
     _DWORD dword8C;
     _DWORD *pdword90;
+    int find_item(bytearr& signature);
 };

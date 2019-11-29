@@ -6,6 +6,7 @@
 #include "../logging.h"
 #include <sstream>
 #include "../game_utils.h"
+#include "../hotkey_config/GeneralConfig.h"
 
 void update_unit(T_GAME *game, T_UNIT_VIEW *unit_view, T_MSG *msg) {
 
@@ -19,12 +20,34 @@ void update_unit(T_GAME *game, T_UNIT_VIEW *unit_view, T_MSG *msg) {
 //            log(buffer);
 
             if (msg->msgType == 112 + 3) {
-                log("update health");
-                if (unit_view->health < 50) {
-                    log("low health");
-                    __int16 inv_item_ind = 1;
-                    for (int i = 0; i < 5; i++) {
-                        game->dwordD0->applyInventoryItem(2, inv_item_ind, 1, 0xE, 1);
+                int lowBoundary = min(gConf.getAutoHealLowBoundary(), unit_view->maxHealth);
+                int highBoundary = min(gConf.getAutoHealHighBoundary(), unit_view->maxHealth);
+                highBoundary = max(highBoundary, lowBoundary);
+                if (unit_view->health < lowBoundary) {
+
+                    bytearr potionSignature = gConf.potionHealthSmall();
+
+                    int ind = game->inventory->find_item(potionSignature);
+                    if (ind >= 0) {
+                        int diff = highBoundary - lowBoundary;
+                        int potionSize = 30;
+                        int num = ceilingDiv(diff, potionSize);
+                        std::stringstream ss;
+//                        ss << "gConf.getAutoHealLowBoundary(): " <<gConf.getAutoHealLowBoundary()
+//                        <<"; unit_view->maxHealth: "<<unit_view->maxHealth
+//                        << "; gConf.getAutoHealHighBoundary(): " <<gConf.getAutoHealHighBoundary()
+//                        << "; highBoundary: " << highBoundary
+//                        << "; diff : " << diff
+//                        << "; num : " << num;
+//                        log(ss.str());
+//                        ss.clear();
+                        ss << "unit(" << std::hex << unit_view  << std::dec << ") is low on health " << unit_view->health << " out of " << unit_view->maxHealth
+                           << ". Crossed low boundary " << lowBoundary << " increasing to " << highBoundary
+                           << " with " << num << " potions(" << ind << ")";
+                        log(ss.str());
+                        for (int i = 0; i < num; i++) {
+                            game->dwordD0->applyInventoryItem(2, ind, 1, 0xE, 1);
+                        }
                     }
                 }
             }
@@ -45,7 +68,7 @@ void __declspec(noinline) __stdcall update_unit_wrapper_inner() {
     mov     edx,[ecx - 144h]
     mov     message, edx
     }
-    update_unit((T_GAME *)0, unit_view, message);
+    update_unit((T_GAME *) 0, unit_view, message);
 }
 
 void __declspec(noinline) __stdcall update_unit_wrapper_inner2() {

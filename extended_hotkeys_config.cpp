@@ -7,9 +7,10 @@
 #include <iomanip>
 #include "logging.h"
 #include "hotkey_config/HotKeyConfig.h"
+#include "hotkey_config/GeneralConfig.h"
 
 using namespace std;
-map<int, vector<bytearray>> hotkeys;
+map<int, vector<bytearr>> hotkeys;
 bool hotkeys_initialized = false;
 
 vector<char> convert( const char arr[], int size) {
@@ -21,6 +22,7 @@ void init_hotkeymap(bool force) {
     if (!hotkeys_initialized || force) {
         log("start reading hotkeys.txt");
         hotkeys_initialized = true;
+        gConf.reload();
         HotKeyConfig conf;
         conf.load("hotkeys.txt");
         hotkeys = conf.getAsMap();
@@ -39,13 +41,13 @@ void init_hotkeymap(bool force) {
     }
 }
 
-bool is_hotkey_present(int hotkey, bytearray item) {
+bool is_hotkey_present(int hotkey, bytearr item) {
     stringstream ss;
     ss << "Item's data: '" << toHex(item) << "'";
 //    log(ss.str());
     if (hotkeys.find(hotkey) != hotkeys.end()) {
 //        log("Found a hotkey!");
-        vector<bytearray> itms = hotkeys[hotkey];
+        vector<bytearr> itms = hotkeys[hotkey];
         if (std::find(itms.begin(), itms.end(), item) != itms.end()) {
             log("Found a match!");
             return true;

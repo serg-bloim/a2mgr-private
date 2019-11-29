@@ -21,7 +21,12 @@ void log(const char *msg){
 }
 
 void log(std::string msg){
-  log(msg.c_str());
+    log(msg.c_str());
+}
+void log(int msg){
+    char buff[10];
+    sprintf((char*)&buff, "%d", msg);
+    log(buff);
 }
 
 string toHex(string str){
