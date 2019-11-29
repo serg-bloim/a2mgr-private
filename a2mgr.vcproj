@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\hotkey_config\GeneralConfig.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\grid.cpp"
 				>
 			</File>
@@ -285,10 +289,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\utils.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\game_objects\utils.cpp"
 				>
 				<FileConfiguration
@@ -300,6 +300,10 @@
 						XMLDocumentationFileName="$(IntDir)\$(InputName)2.xdc"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\utils.cpp"
+				>
 			</File>
 			<File
 				RelativePath=".\video_init.cpp"
@@ -426,6 +430,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\hotkey_config\GeneralConfig.h"
+				>
+			</File>
+			<File
 				RelativePath=".\gl.h"
 				>
 			</File>
@@ -479,6 +487,10 @@
 			</File>
 			<File
 				RelativePath=".\serialize.h"
+				>
+			</File>
+			<File
+				RelativePath=".\hotkey_config\SimpleIni.h"
 				>
 			</File>
 			<File
