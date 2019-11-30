@@ -93,9 +93,10 @@ struct __declspec(align(2)) T_UNIT_VIEW
         _BYTE byte183;
         _BYTE byte184;
         _BYTE gap15[51];
-        _DWORD dword1B8;
+        unsigned int attrs;
         _BYTE gap16[32];
         _WORD word1DC;
+        bool isMainUnit();
         };
 
 #endif //A2MGR_UNIT_VIEW_H

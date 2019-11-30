@@ -10,7 +10,7 @@
 
 void update_unit(T_GAME *game, T_UNIT_VIEW *unit_view, T_MSG *msg) {
 
-    if (unit_view) {
+    if (unit_view && unit_view->isMainUnit()) {
         char buffer[100];
         sprintf(buffer, "unit_view addr is 0x%08X", unit_view);
 //        log(buffer);
