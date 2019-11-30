@@ -33,14 +33,6 @@ void update_unit(T_GAME *game, T_UNIT_VIEW *unit_view, T_MSG *msg) {
                         int potionSize = 30;
                         int num = ceilingDiv(diff, potionSize);
                         std::stringstream ss;
-//                        ss << "gConf.getAutoHealLowBoundary(): " <<gConf.getAutoHealLowBoundary()
-//                        <<"; unit_view->maxHealth: "<<unit_view->maxHealth
-//                        << "; gConf.getAutoHealHighBoundary(): " <<gConf.getAutoHealHighBoundary()
-//                        << "; highBoundary: " << highBoundary
-//                        << "; diff : " << diff
-//                        << "; num : " << num;
-//                        log(ss.str());
-//                        ss.clear();
                         ss << "unit(" << std::hex << unit_view  << std::dec << ") is low on health " << unit_view->health << " out of " << unit_view->maxHealth
                            << ". Crossed low boundary " << lowBoundary << " increasing to " << highBoundary
                            << " with " << num << " potions(" << ind << ")";

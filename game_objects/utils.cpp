@@ -39,25 +39,12 @@ __declspec(naked) int ths_wrapper(const void *fptr) {
 bool compare(bytearr &barr, _BYTE *arr, int arrsize) {
     if (barr.size() != arrsize || arrsize == 0)
         return false;
-    std::stringstream s1, s2;
-    bool res = true;
-    log("barrsize:");
-    log(barr.size());
-    log("arrsize:");
-    log(arrsize);
     for (int i = 0; i < arrsize; i++) {
-        s1 << (int)barr[i] << ",";
-        s2 << (int)(char)arr[i] << ",";
         if (barr[i] != (char)arr[i]) {
-            res = false;
-            break;
+            return false;
         }
     }
-    log(res ? "match" : "no match");
-    log(s1.str());
-    log(s2.str());
-    log("-----------");
-    return res;
+    return true;
 }
 
 int ceilingDiv(int a, int b) {
