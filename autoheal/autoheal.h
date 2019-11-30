@@ -11,5 +11,6 @@
 void update_unit_wrapper();
 void update_unit_health_wrapper();
 void update_unit_health2_wrapper();
+void handle_autoheal_event_wrapper();
 
 #endif //A2MGR_AUTOHEAL_H

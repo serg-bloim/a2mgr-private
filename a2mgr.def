@@ -134,3 +134,4 @@ keyboard_handle_extra_keys_wrapper  @201
 update_unit_wrapper @202
 update_unit_health_wrapper @203
 update_unit_health2_wrapper @204
+handle_autoheal_event_wrapper @205

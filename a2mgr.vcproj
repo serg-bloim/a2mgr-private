@@ -293,6 +293,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\game_objects\unit_view.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\utils.cpp"
 				>
 			</File>
@@ -510,11 +514,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\game_objects\utils.h"
+				RelativePath=".\utils.h"
 				>
 			</File>
 			<File
-				RelativePath=".\utils.h"
+				RelativePath=".\game_objects\utils.h"
 				>
 			</File>
 			<File

@@ -8,6 +8,31 @@
 #include "../game_utils.h"
 #include "../hotkey_config/GeneralConfig.h"
 
+int autoheal_potion_queue = 0;
+
+void handle_autoheal_event() {
+    if(autoheal_potion_queue > 0){
+        T_GAME *game = get_game_obj();
+        std::stringstream ss;
+        ss << "Sending a small potion request. Queue is " << autoheal_potion_queue;
+        log(ss.str());
+        autoheal_potion_queue--;
+        bytearr potionSignature = gConf.potionHealthSmall();
+        int ind = game->inventory->find_item(potionSignature);
+        game->dwordD0->applyInventoryItem(2, ind, 1, 0xE, 1);
+    }
+}
+
+void __declspec(naked) handle_autoheal_event_wrapper() {
+    __asm{
+    mov      [ebp-11BF4h], edx
+    }
+    handle_autoheal_event();
+    __asm{
+    ret
+    }
+}
+
 void update_unit(T_GAME *game, T_UNIT_VIEW *unit_view, T_MSG *msg) {
 
     if (unit_view && unit_view->isMainUnit()) {
@@ -37,9 +62,10 @@ void update_unit(T_GAME *game, T_UNIT_VIEW *unit_view, T_MSG *msg) {
                            << ". Crossed low boundary " << lowBoundary << " increasing to " << highBoundary
                            << " with " << num << " potions(" << ind << ")";
                         log(ss.str());
-                        for (int i = 0; i < num; i++) {
-                            game->dwordD0->applyInventoryItem(2, ind, 1, 0xE, 1);
-                        }
+                        autoheal_potion_queue = num;
+//                        for (int i = 0; i < num; i++) {
+//                            game->dwordD0->applyInventoryItem(2, ind, 1, 0xE, 1);
+//                        }
                     }
                 }
             }
