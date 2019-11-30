@@ -96,6 +96,7 @@ copy /Y add\templates.bin release\templates.bin >nul
 copy /Y original\rom2me.exe nsis\rom2me.exe >nul
 
 xcopy C:\a2land\src\client\a2mgr\postbuild\release\a2mgr.dll C:\a2client_local\ /r /y
+xcopy C:\a2land\src\client\a2mgr\postbuild\release\allods2.exe C:\a2client_local\ /r /y
 
 call nsis.bat %VER%
 if errorlevel 1 goto nsis_fail
