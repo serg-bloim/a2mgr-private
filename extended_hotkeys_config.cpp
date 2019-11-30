@@ -10,7 +10,6 @@
 #include "hotkey_config/GeneralConfig.h"
 
 using namespace std;
-map<int, vector<bytearr>> hotkeys;
 bool hotkeys_initialized = false;
 
 vector<char> convert( const char arr[], int size) {
@@ -18,33 +17,34 @@ vector<char> convert( const char arr[], int size) {
     return v;
 }
 
-void init_hotkeymap(bool force) {
-    if (!hotkeys_initialized || force) {
-        log("start reading hotkeys.txt");
-        hotkeys_initialized = true;
-        gConf.reload();
-        HotKeyConfig conf;
-        conf.load("hotkeys.txt");
-        hotkeys = conf.getAsMap();
-
-        stringstream ss;
-        for (map<int,vector<bytearr>>::iterator it = hotkeys.begin(); it!=hotkeys.end(); ++it){
-            vector<bytearr> itms = it->second;
-            ss << it->first << "(" << itms.size() << ") = ";
-            for (vector<bytearr>::iterator it2 = itms.begin(); it2 != itms.end(); it2++){
-                ss << toHex(*it2) << "; ";
-            }
-            log(ss.str());
-            ss.clear();
-        }
-        log("end reading hotkeys.txt");
-    }
-}
+//void init_hotkeymap(bool force) {
+//    if (!hotkeys_initialized || force) {
+//        log("start reading hotkeys.txt");
+//        hotkeys_initialized = true;
+//        gConf.reload();
+//        HotKeyConfig conf;
+//        conf.load("hotkeys.txt");
+////        hotkeys = conf.getAsMap();
+//
+////        stringstream ss;
+//////        for (map<int,vector<bytearr>>::iterator it = hotkeys.begin(); it!=hotkeys.end(); ++it){
+////            vector<bytearr> itms = it->second;
+////            ss << it->first << "(" << itms.size() << ") = ";
+////            for (vector<bytearr>::iterator it2 = itms.begin(); it2 != itms.end(); it2++){
+////                ss << toHex(*it2) << "; ";
+////            }
+////            log(ss.str());
+////            ss.clear();
+////        }
+//        log("end reading hotkeys.txt");
+//    }
+//}
 
 bool is_hotkey_present(int hotkey, bytearr item) {
     stringstream ss;
     ss << "Item's data: '" << toHex(item) << "'";
-//    log(ss.str());
+    //log(ss.str());
+    map<int, vector<bytearr>> hotkeys = gConf.getHotKeyConfig()->getAsMap();
     if (hotkeys.find(hotkey) != hotkeys.end()) {
 //        log("Found a hotkey!");
         vector<bytearr> itms = hotkeys[hotkey];

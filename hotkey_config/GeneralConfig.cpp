@@ -58,6 +58,9 @@ void GeneralConfig::reload() {
     }
 }
 
+HotKeyConfig* GeneralConfig::getHotKeyConfig(){
+    return &this->_hotkeyConfig;
+}
 int GeneralConfig::getAutoHealLowBoundary() {
     return _autoHealLowBoundary;
 }
