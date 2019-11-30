@@ -22,6 +22,7 @@ void HotKeyConfig::load(string filename) {
     {
         char ch;
         string buffer;
+        bool comment = false;
         int hotkey =-1;
         vector<bytearr> items;
         int i =0;
@@ -33,6 +34,7 @@ void HotKeyConfig::load(string filename) {
                     //skip
                     break;
                 case '\n':
+                    comment = false;
                 case ';':
                     if(buffer.size() > 0 && hotkey != -1) {
                         hotkeys[hotkey].push_back(stoba(buffer));
@@ -43,13 +45,16 @@ void HotKeyConfig::load(string filename) {
                     stringstream(buffer) >> hotkey;
                     buffer.clear();
                     break;
+                case '#':
+                    comment = true;
+                    break;
                 default:
-                    if((ch >= '0' && ch <='9' )||
-                            (ch >= 'a' && ch <= 'f')||
-                            (ch >='A' && ch <='F')){
-                        buffer.push_back(ch);
-                    }else{
-                        //wrong character. ignore
+                    if(!comment) {
+                        if ((ch >= '0' && ch <= '9') ||
+                            (ch >= 'a' && ch <= 'f') ||
+                            (ch >= 'A' && ch <= 'F')) {
+                            buffer.push_back(ch);
+                        }
                     }
             }
         }
