@@ -19,7 +19,23 @@ __declspec(naked) int ths_wrapper(const void *fptr) {
     jmp     edx
     }
 }
-
+//__cdecl int ths_wrapper2(const void *fptr, const void *ths, ...) {
+//    __asm{
+//    push    ebp
+//    mov     ebp, esp
+//    mov     edx, fptr
+//    pop     ebp
+//    add     esp, 8 // removing ths_wrapper's return address and fptr parameter from stack
+//    jmp     edx
+//    }
+//}
+//__declspec(naked) int ths_wrapper3(const void *fptr, void *first_param_ptr) {
+//    __asm{
+//    mov     esp, first_param_ptr
+//    mov     edx, fptr
+//    jmp     edx
+//    }
+//}
 bool compare(bytearr &barr, _BYTE *arr, int arrsize) {
     if (barr.size() != arrsize || arrsize == 0)
         return false;

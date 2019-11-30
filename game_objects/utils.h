@@ -12,6 +12,8 @@
 //#endif //A2MGR_UTILS_H
 
 int ths_wrapper(const void *fptr);
+//int ths_wrapper2(const void *fptr, const void *ths, ...)
+//int ths_wrapper3(const void *fptr, const void *ths, ...)
 
 bool compare(bytearr &barr, _BYTE *arr, int arrsize);
 

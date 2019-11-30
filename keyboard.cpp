@@ -26,6 +26,8 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
 //        log
         int ind = game->inventory->find_item(potionSignature);
         log(ind);
+//        __debugbreak();
+        game->dwordD0->applyInventoryItem(2,ind, 1, 0xE, 1);
     }
     if (game)
     {

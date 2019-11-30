@@ -29,7 +29,7 @@ void update_unit(T_GAME *game, T_UNIT_VIEW *unit_view, T_MSG *msg) {
 
                     int ind = game->inventory->find_item(potionSignature);
                     if (ind >= 0) {
-                        int diff = highBoundary - lowBoundary;
+                        int diff = highBoundary - unit_view->health;
                         int potionSize = 30;
                         int num = ceilingDiv(diff, potionSize);
                         std::stringstream ss;

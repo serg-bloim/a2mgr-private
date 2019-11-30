@@ -7,7 +7,12 @@
 
 struct T_GAME_dwordD0{
     __declspec(noinline) int applyInventoryItem( int a2, int inv_item_ind, int amountQ, int gear_type, int a6){
-        return ths_wrapper((void *)0x0041C053);
+        __asm{
+            pop     ecx
+            pop     ebp
+            mov     eax, 0x0041C053
+            jmp     eax
+        }
     }
 };
 struct __declspec(align(4)) T_GAME {
