@@ -2,8 +2,29 @@
 #include <string>
 
 #define URL "hat.tangar.info"
+char aHat[100];
 
-char aHat[] = URL;
+void updateHatAddress() {
+    int _start;
+    int _end;
+    std::string cmdLine = GetCommandLineA();
+    std::string option = "-url";
+    std::string url;
+    if ((_start = cmdLine.find(option)) != std::string::npos) {
+        for (int i = _start + option.size() + 1; i < cmdLine.size(); i++) {
+            char c = cmdLine[i];
+            if (c == ' ')
+                break;
+            url += c;
+        }
+        if (url.size() < sizeof(aHat)) {
+            strcpy((char *)&aHat, url.c_str());
+            return;
+        }
+    }
+    url = URL;
+    strcpy((char *)&aHat, url.c_str());
+}
 
 const char * aLogin;
 const char * aPassword;
@@ -84,6 +105,7 @@ void __declspec(naked) HATENT_login_text()
 
 void __declspec(naked) HATENT_url_text()
 {
+    updateHatAddress();
 	__asm
 	{
 		mov		eax, offset aHat
