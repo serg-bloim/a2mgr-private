@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <string>
 
-#define URL "127.0.0.1"
+#define URL "hat.tangar.info"
 
 char aHat[] = URL;
 
