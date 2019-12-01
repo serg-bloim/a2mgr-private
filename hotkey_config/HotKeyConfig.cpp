@@ -13,7 +13,9 @@
 using namespace std;
 
 
-
+void HotKeyConfig::clear() {
+    hotkeys.clear();
+}
 
 void HotKeyConfig::load(string filename) {
     ifstream myfile (filename.c_str());

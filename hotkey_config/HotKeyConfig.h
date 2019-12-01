@@ -16,6 +16,7 @@ class HotKeyConfig {
 private:
     map<int, vector<bytearr>> hotkeys;
 public:
+    void clear();
     void load(string filename);
     map<int, vector<bytearr>> getAsMap();
 };

@@ -49,6 +49,7 @@ void GeneralConfig::reload() {
         log(ss.str());
         ss.clear();
         _autoHealHighBoundary = (int) ini.GetLongValue("autoheal", "high", 100000);
+        _hotkeyConfig.clear();
         _hotkeyConfig.load("hotkeys.txt");
         log("Successfully read config from file '" + filename + "'");
     }
