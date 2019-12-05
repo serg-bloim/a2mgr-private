@@ -11,13 +11,13 @@
 int autoheal_potion_queue = 0;
 
 void handle_autoheal_event() {
-    if(autoheal_potion_queue > 0){
+    if(autoheal_potion_queue > 0) {
         T_GAME *game = get_game_obj();
         std::stringstream ss;
         ss << "Sending a small potion request. Queue is " << autoheal_potion_queue;
         log(ss.str());
         autoheal_potion_queue--;
-        bytearr potionSignature = gConf.potionHealthSmall();
+        bytearr potionSignature = gConf.getAutoHealPotionType() == 1 ? gConf.potionHealthBig() : gConf.potionHealthSmall();
         int ind = game->inventory->find_item(potionSignature);
         game->dwordD0->applyInventoryItem(2, ind, 1, 0xE, 1);
     }
@@ -37,36 +37,26 @@ void update_unit(T_GAME *game, T_UNIT_VIEW *unit_view, T_MSG *msg) {
 
     if (unit_view && unit_view->isMainUnit()) {
         char buffer[100];
-        sprintf(buffer, "unit_view addr is 0x%08X", unit_view);
-//        log(buffer);
         if (msg) {
             char buffer[100];
-            sprintf(buffer, "msg addr is 0x%08X", msg);
-//            log(buffer);
 
             if (msg->msgType == 112 + 3) {
                 int lowBoundary = min(gConf.getAutoHealLowBoundary(), unit_view->maxHealth);
                 int highBoundary = min(gConf.getAutoHealHighBoundary(), unit_view->maxHealth);
+                log("dmg hit message");
+                log(unit_view->health);
                 highBoundary = max(highBoundary, lowBoundary);
                 if (unit_view->health < lowBoundary) {
-
-                    bytearr potionSignature = gConf.potionHealthSmall();
-
-                    int ind = game->inventory->find_item(potionSignature);
-                    if (ind >= 0) {
-                        int diff = highBoundary - unit_view->health;
-                        int potionSize = 30;
-                        int num = ceilingDiv(diff, potionSize);
-                        std::stringstream ss;
-                        ss << "unit(" << std::hex << unit_view  << std::dec << ") is low on health " << unit_view->health << " out of " << unit_view->maxHealth
-                           << ". Crossed low boundary " << lowBoundary << " increasing to " << highBoundary
-                           << " with " << num << " potions(" << ind << ")";
-                        log(ss.str());
-                        autoheal_potion_queue = num;
-//                        for (int i = 0; i < num; i++) {
-//                            game->dwordD0->applyInventoryItem(2, ind, 1, 0xE, 1);
-//                        }
-                    }
+                    int diff = highBoundary - unit_view->health;
+                    int potionSize = gConf.getAutoHealPotionType() == 1 ? 100 : 30;
+                    int num = ceilingDiv(diff, potionSize);
+                    std::stringstream ss;
+                    ss << "unit(" << std::hex << unit_view << std::dec << ") is low on health " << unit_view->health
+                       << " out of " << unit_view->maxHealth
+                       << ". Crossed low boundary " << lowBoundary << " increasing to " << highBoundary
+                       << " with " << num << " potions(" << gConf.getAutoHealPotionType() << ")";
+                    log(ss.str());
+                    autoheal_potion_queue = num;
                 }
             }
         }

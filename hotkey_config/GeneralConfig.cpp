@@ -39,6 +39,10 @@ void GeneralConfig::reload() {
         _potionManaSmall = stoba(nospaces(ini.GetValue("inventory", "potionManaSmall", "")));
         _potionHealthRegen = stoba(nospaces(ini.GetValue("inventory", "potionHealthRegen", "")));
         _potionManaRegen = stoba(nospaces(ini.GetValue("inventory", "potionManaRegen", "")));
+        _potionHealthValue = (int) ini.GetLongValue("inventory", "potionHealthValue", 30);
+        ss.clear();
+        ss << "_potionHealthValue: " << ini.GetValue("inventory", "potionHealthValue", "------") <<";";
+        log(ss.str());
         log("4");
         _autoHealLowBoundary = (int) ini.GetLongValue("autoheal", "low", 100000);
         ss.clear();
@@ -49,6 +53,10 @@ void GeneralConfig::reload() {
         log(ss.str());
         ss.clear();
         _autoHealHighBoundary = (int) ini.GetLongValue("autoheal", "high", 100000);
+        _autoHealPotionType = strcmp(ini.GetValue("autoheal", "potionType", "small"),"big")==0 ? 1 : 0;
+        ss.clear();
+        ss << "\npotionType: " << ini.GetValue("autoheal", "potionType", "------") <<";" << " _autoHealPotionType: " << _autoHealPotionType ;
+        log(ss.str());
         _hotkeyConfig.clear();
         _hotkeyConfig.load("hotkeys.txt");
         log("Successfully read config from file '" + filename + "'");
@@ -68,6 +76,10 @@ int GeneralConfig::getAutoHealLowBoundary() {
 
 int GeneralConfig::getAutoHealHighBoundary() {
     return _autoHealHighBoundary;
+}
+
+int GeneralConfig::getAutoHealPotionType() {
+    return _autoHealPotionType;
 }
 
 bytearr GeneralConfig::potionHealthBig() {
@@ -94,3 +106,6 @@ bytearr GeneralConfig::potionManaRegen() {
     return _potionManaRegen;
 }
 
+int GeneralConfig::potionHealthValue(){
+    return _potionHealthValue;
+}

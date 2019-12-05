@@ -72,11 +72,6 @@ int __declspec(noinline) keyboard_handle_extra_keys(int key)
 //                            log("debug");
                             game->pdwordE0->method7C(gear_type-1);
                         }
-                    }else if(key == 75){
-                        stringstream ss;
-                        int gear_type = item->getTypeWrapper();
-                        ss << "item type (" << gear_type << ") " << toHex(data) << " ; " << toHex2(data);
-                        log(ss.str());
                     }
                 }
                 sprintf(buffer, "inventory size is %d", size);

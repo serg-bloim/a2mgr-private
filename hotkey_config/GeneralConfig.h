@@ -16,6 +16,8 @@ public:
 
     HotKeyConfig *getHotKeyConfig();
 
+    int getAutoHealPotionType();
+
     int getAutoHealLowBoundary();
 
     int getAutoHealHighBoundary();
@@ -34,6 +36,8 @@ public:
 
     bytearr autoHealLowBoundary();
 
+    int GeneralConfig::potionHealthValue();
+
     void reload();
 
 private:
@@ -41,6 +45,7 @@ private:
     HotKeyConfig _hotkeyConfig;
     int _autoHealLowBoundary;
     int _autoHealHighBoundary;
+    int _autoHealPotionType;
 
     bytearr _potionHealthBig;
     bytearr _potionHealthSmall;
@@ -48,6 +53,8 @@ private:
     bytearr _potionManaSmall;
     bytearr _potionHealthRegen;
     bytearr _potionManaRegen;
+
+    int _potionHealthValue;
 };
 
 extern GeneralConfig gConf;
